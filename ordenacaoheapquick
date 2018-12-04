@@ -1,0 +1,239 @@
+#include<stdio.h>
+
+void move(int *vet, int raiz, int fundo);
+
+void heap(int *vet, int n) {
+	int i, tmp;
+	//max heap
+	for (i = (n / 2); i >= 0; i--) {
+		move(vet, i, n - 1);
+	}
+	//Retirar os valores
+	for (i = n-1; i >= 1; i--) {
+		tmp = vet[0];
+		vet[0] = vet[i];
+		vet[i] = tmp;
+		move(vet, 0, i-1);
+	}
+}
+
+void move(int *vet, int raiz, int fundo) {
+	int pronto, filho, tmp;
+
+	pronto = 0;
+	while ((raiz*2 <= fundo) && (!pronto)) {
+		if (raiz*2 == fundo) {
+			filho = raiz * 2;
+		}
+		else if (vet[raiz * 2] > vet[raiz * 2 + 1]) {
+			filho = raiz * 2 ;
+			// filho direito;
+		}
+		else {
+			filho = raiz * 2 + 1;//filho esquerdo
+		}
+
+	if (vet[raiz] < vet[filho]) {
+		tmp = vet[raiz];
+		vet[raiz] = vet[filho];
+		vet[filho] = tmp;
+		raiz = filho;
+    }
+	else {
+      pronto = 1;
+	}
+  }
+}
+
+	
+	
+	
+	
+
+
+
+
+void quick (int vetor[100], int cont, int final){
+	
+	int c, aux, i, m, metade;
+	
+	i = cont ;
+	
+	m=final;
+	
+	
+	metade = ((i+m)/2);
+	c=vetor[metade];
+	
+	
+	do{
+		
+		
+		while (vetor[i] < c) i = i+1;
+		while (vetor[m] > c) m=m-1;
+		
+		
+			if (i<=m){
+				aux = vetor[i];
+				vetor[i] =  vetor [m];
+				vetor[m] =  aux;
+				
+				i = i+1;
+				m=m-1;
+			}
+		
+		
+	}while (m>i);
+		if (cont < m) quick (vetor, cont, m);
+		if (i<final)  quick (vetor, i, final);
+	}
+	
+	
+	
+	
+void move(int *vet, int raiz, int fundo);	
+	
+	
+int main (int at, char** ac ){
+	
+	//int p (int*a, int b );
+
+
+
+	
+		int f;
+	printf("====================================\n");
+	printf("\n Digite (1)para ordenar em Heap \n Digite (2)para ordenar em Quicksort\n");
+
+	printf("\n====================================\n");
+	scanf("%d", &f);
+
+switch (f){
+   	
+	
+	case 1:
+		
+		
+		
+		
+		 int i;
+		 int n;
+		 int vet[100];
+  		 
+   
+  					 printf("digite o tamanho dom vetor");
+   						scanf("%d",&n);
+   						
+   						
+ for(i = 0; i < n; i++)
+{
+ 			 printf("Digite um valor:vet[%d] ",i);
+ 			 scanf("%d", &vet[i]);
+ }
+ 					printf("Vetor Desordenado:\n");
+ 					
+ 					
+  for(i = 0; i < n; i++){
+					printf("%d ", vet[i]);
+
+  }
+  
+  
+  	 
+
+  
+  for(i = 0; i < n; i++){
+  				heap (vet, n);
+  		
+
+ 				printf("%d", vet[i]);
+  }
+  				printf("\n");  
+
+					// shell(vet, n);
+ 
+
+ 					printf("Vetor  Ordenado ");
+ 					
+ 					
+ for(i = 0; i < n; i++)
+ {
+ 	
+ 			heap (vet, n);
+ 			 printf("\n%d\n", vet[i]);
+      		   printf("\n"); 
+
+ }
+ 
+  				printf("\n\nheapsort\n");
+
+ 
+   break;
+ //system("pause");
+ //return 0;
+ 
+ 
+ 
+
+          case 2:
+          	
+          	// int n;
+ // int i;
+  	int vetor[100];
+  		printf("digite o tamanho do vetor");
+  		scanf("%d",& n);
+  
+  
+  for (i=0;i<n;i++){
+  
+  			printf("digite ovalor vetor[%d]",i);
+  			scanf("%d",&vetor[i]);
+  }
+  	
+  
+ //{7, 5,15,58,26,23,45,16,85,96,23,45};
+  //int i;   
+ // for (c=0;c<n;c++){
+  	
+ 
+  	
+  
+  printf("VETOR DESORDENADO:\n");
+  
+  			for(i = 0; i < n; i++){
+ 			printf("%d ", vetor[i]);
+
+  }
+  
+  		for(i = 0; i < n; i++){
+ 			printf("%d", vetor[i]);
+  }
+ 				 printf("\n");   
+  
+ 
+ 		 quick(vetor, 0, n);
+  
+ 				 printf("VETOR ORDENADO:\n");
+ 				 
+ 				 
+  for(i = 0; i < n; i++){
+ 		
+		 	printf("%d ", vetor[i]);
+  }
+ 							 printf("\n");   
+  								 printf("\nQuicksort\n");
+
+
+   break;
+
+
+  default :
+  	
+  	
+  	printf("Alternativa Invalida");
+          	
+					}
+          	
+						}
+
+
